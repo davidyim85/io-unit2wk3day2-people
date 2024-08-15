@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/back') %>
+    
+    <img
+        src="<%=selectedPerson.imageUrl%>" alt="<%=selectedPerson.name %>"
+        width="100"
+        length="100"
+    />
+
+    <form action="/person/<%=selectedPerson._id%>?_method=PUT" method="POST">
+        <fieldset>
+            <legend> Edit a person</legend>
+            <label>
+                Name: <input  value="<%=selectedPerson.name%>" type="text" name="name" placeholder="enter a todo" />
+            </label>
+            <br>
+            <label>
+                Image Url: <input value="<%=selectedPerson.imageUrl%>"  type="text" name="imageUrl" />
+            </label>
+            <br>
+            <label>
+                Title: <input  value="<%=selectedPerson.title%>" type="text" name="title"   />
+            </label>
+        </fieldset>
+        <input type="submit" value="edit person"/>
+    </form>
+
+    <!-- <a href="/person/<%=selectedPerson._id%>?_method=DELETE">
+        delete person
+    </a> -->
+
+    <form action="/person/<%=selectedPerson._id%>?_method=DELETE" method="POST">
+        <input type="submit" value="delete person"/>
+    </form>
+
+</body>
+</html>

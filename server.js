@@ -4,7 +4,7 @@
 require('dotenv').config(); //load in my .env variables 
 const express = require('express');
 const methodOverride = require('method-override');
-const People = require('./models/people');
+const peopleRouter = require('./controllers/people');
 
 const app = express();
 
@@ -27,39 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 // thus overriding the POST (or GET) in the method attribute 
 app.use(methodOverride('_method'));
 
-
-
-//////////////////////////////////////////////
-//////// Routes: Section          //////// 
-///////////////////////////////////////////////
-
-
-// create a landing page
-
-app.get('/people', async (req, res) => {
-    try {
-        let people = await People.find({});
-        res.render('landing.ejs', { people: people })
-
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
-
-// create a new page
-// create a new page ejs
-app.get('/person/new', (req, res) => {
-    res.render('new.ejs');
-})
-
-app.post('/people',async (req, res) => {
-    await People.create(req.body);
-    res.redirect('/people')
-});
-
-
-
-
+app.use('/', peopleRouter);
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {

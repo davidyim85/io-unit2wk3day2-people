@@ -9,7 +9,9 @@
     <a href="/person/new">Create new person</a>
     <ul>
         <% for(person of people) {%>
-            <li><%=person.name %></li>
+            <a href="/person/<%=person._id%>">
+                <li><%=person.name %></li>
+            </a>
         <%} %>
     </ul>
 </body>

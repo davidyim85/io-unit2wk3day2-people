@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+
+    <%- include('./partials/back') %>
+
     <form action="/people" method="POST">
         <fieldset>
             <legend> Create a person</legend>
@@ -28,5 +31,7 @@
         </fieldset>
         <input type="submit" value="create new person"/>
     </form>
+
+    
 </body>
 </html>
